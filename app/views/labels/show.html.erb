@@ -1,0 +1,27 @@
+<div class='row'>
+  <h1><%= @label.name %></h1>
+</div>
+
+<div class='row'>
+  <div class='col-md-8'>
+    <h2>Albums</h2>
+    <ul>
+    <% @label.albums.each do |album| %>
+      <li>
+        <%= link_to album.name, album_path(album) %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+  <div class='col-md-2'>
+    <h2><%= @label.name %> Artists</h2>
+    <ul>
+      <% @label.artists.each do |artist| %>
+        <li>
+          <%= link_to artist.name, artist_path(artist) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

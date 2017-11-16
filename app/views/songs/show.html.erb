@@ -1,0 +1,11 @@
+<div class='row'>
+  <h1><%= @song.name %> on <%= link_to @song.album.name, @song.album %></h1>
+  <h2>by <%= link_to @song.album.artist.name, @song.album.artist %></h2>
+</div>
+
+<h3>On Playlists</h3>
+<% @song.playlists.each do |playlist| %>
+<div class='row'>
+  <%= link_to playlist.name, playlist %>
+</div>
+<% end %>

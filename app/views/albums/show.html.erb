@@ -1,0 +1,15 @@
+<div class='row'>
+  <h1><%= @album.name %> by <%= link_to @album.artist.name, artist_path(@album.artist) %> (<%= link_to @album.label.name, @album.label %>)</h1>
+</div>
+
+
+<div clas='row'>
+  <h2>Songs</h2>
+  <ul>
+    <% @album.songs.each do |song| %>
+      <li>
+        <%= link_to song.name, song %>
+      </li>
+    <% end %>
+  </ul>
+</div>

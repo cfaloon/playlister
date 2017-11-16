@@ -1,0 +1,14 @@
+<div class='row'><h1><%= @artist.name %></h1></div>
+
+<div class='row'>
+  <div class='col-md-6 col-md-2-offset'>
+    <% @artist.albums.each do |album| %>
+      <%= link_to album.name, album %>
+    <% end %>
+  </div>
+  <div class='col-md-2'>
+    <% @artist.labels.uniq.each do |label| %>
+      <%= link_to label.name, label %>
+    <% end %>
+  </div>
+</div>
