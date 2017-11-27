@@ -23,16 +23,15 @@ class PlaylistsController < ApplicationController
   end
 
   def add_song
-
-    label = Label.find_or_create_by(name: params[:label_name])
-    artist = Artist.find_or_create_by(name: params[:artist_name])
-    album = Album.find_or_create_by(name: params[:album_name], artist: artist, label: label)
-    song = Song.find_or_create_by(name: params[:song_name], album: album)
-    PlaylistSong.create(song: song, playlist: @playlist)
+    @playlist.add_song(add_song_params)
     redirect_to playlist_path(@playlist)
   end
 
   private
+  def add_song_params
+    params.permit([:artist_name, :album_name, :label_name, :song_name])
+  end
+
   def playlist_params
     params.require(:playlist).permit([:name])
   end
