@@ -1,10 +1,13 @@
 class Playlist < ApplicationRecord
   # relations
+  belongs_to :user
   has_many :playlist_songs
   has_many :songs, through: :playlist_songs
-
+  
+  
   # validations
   validates :name, presence: true
+  validates :user, presence: true
 
   # instance methods
   def add_song(add_song_params)
