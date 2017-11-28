@@ -1,5 +1,6 @@
 class PlaylistsController < ApplicationController
   before_action :find_playlist, only: [:show, :add_song]
+  before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @playlists = Playlist.all
