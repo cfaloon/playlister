@@ -14,7 +14,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
+    @playlist = Playlist.new(playlist_params.merge(user: current_user))
 
     if @playlist.save
       render 'playlists/show'
