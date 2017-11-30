@@ -1,2 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+one:
+  name: Untying the Not
+  label: sci
+  artist: sci
 
+five:
+  name: Gap Band IV
+  label: total_exp
+  artist: gap

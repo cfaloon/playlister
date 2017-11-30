@@ -7,7 +7,7 @@ class PlaylistTest < ActiveSupport::TestCase
     # test adding a song successfully
     assert_difference 'playlists(:one).songs.count' do
       playlists(:one).add_song({ song_name: 'Song In My Head',
-                                 arist_name: 'The String Cheese Incident',
+                                 artist_name: 'The String Cheese Incident',
                                  label_name: 'Loud & Proud Records',
                                  album_name: 'Song In My Head' })
     end
@@ -21,14 +21,14 @@ class PlaylistTest < ActiveSupport::TestCase
 
     assert_difference 'Song.count', 0 do
       playlists(:two).add_song({ song_name: 'Song In My Head',
-                                 arist_name: 'The String Cheese Incident',
+                                 artist_name: 'The String Cheese Incident',
                                  label_name: 'Loud & Proud Records',
                                  album_name: 'Song In My Head' })
     end
 
     assert_difference 'Album.count', 0 do
       playlists(:one).add_song({ song_name: 'Colorado Bluebird Sky',
-                                 arist_name: 'The String Cheese Incident',
+                                 artist_name: 'The String Cheese Incident',
                                  label_name: 'Loud & Proud Records',
                                  album_name: 'Song In My Head' })
     end

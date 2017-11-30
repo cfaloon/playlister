@@ -5,7 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 cole:
+  username: 'cfaloon'
   email: 'cfaloon@gmail.com'
 #
 two:
+  username: 'keith.drone'
   email: 'bartcow@gmail.com'
+
+thomas:
+  username: 'goldenrader'
+  email: 'thomas.murray@gmail.com'
