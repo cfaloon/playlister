@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :artists, only: [:index, :show]
   resources :albums, only: [:index, :show]
   resources :labels, only: [:index, :show]
+  get 'users/:username' => 'users#show', as: 'show_user'
   post 'add_song' => 'playlists#add_song'
 
 
