@@ -9,9 +9,14 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should redirect on new without authentication" do
+    get new_playlist_url
+    assert_response :redirect
+    assert_redirected_to new_user_session_path
+  end
+
   test "should get index" do
     get playlists_url
     assert_response :success
   end
-
 end
