@@ -1,22 +1,30 @@
-<div class='row'>
+<div class='jumbotron'>
   <h1><%= @playlist.name %></h1>
+  <h5>
+    by <%= link_to @playlist.user.username, show_user_path(username: @playlist.user.username) %>
+  </h5>
 </div>
-
-<% @playlist.songs.each do |song| %>
-<div class='row'>
-  <div class='col-md-3'>
-    <%= link_to song.name, song_path(song) %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to song.album.name, album_path(song.album) %>
-  </div>
-  <div class='col-md-3'>
-    <%= link_to song.album.label.name, song.album %>
-  </div>
-</div>
+<div class='row' style="margin-top: 30px;">
+  <table class='table table-striped'>
+    <tr>
+      <th>Song</th><th>Artist</th><th>Album</th><th>Label</th>
+    </tr>
+<% @songs.each do |song| %>
+  <tr>
+    <td>
+      <%= link_to song.name, song_path(song) %>
+    </td>
+    <td>
+      <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
+    </td>
+    <td>
+      <%= link_to song.album.name, album_path(song.album) %>
+    </td>
+    <td>
+      <%= link_to song.album.label.name, song.album.label %>
+    </td>
+  </tr>
 <% end %>
-
+</table>
+</div>
 <%= render 'add_song_form', playlist: @playlist if @playlist.user == current_user %>

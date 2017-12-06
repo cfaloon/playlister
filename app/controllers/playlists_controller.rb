@@ -7,6 +7,7 @@ class PlaylistsController < ApplicationController
   end
 
   def show
+    @songs = @playlist.songs.includes(album: [:artist, :label])
   end
 
   def new

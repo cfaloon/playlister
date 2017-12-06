@@ -1,3 +1,16 @@
 <div class='row'>
-  
+  <h1><%= @user.username %></h1>
+</div>
+
+<div class='row'>
+  <div class='col-sm-10'>
+
+  <h2>Playlists</h2>
+  <ul>
+    <% @user.playlists.each do |playlist| %>
+      <li>
+        <%= link_to playlist.name, playlist %>
+      </li>
+    <% end %>
+  </ul>
 </div>
