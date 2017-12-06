@@ -7,9 +7,4 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get show_user_path(users(:cole))
     assert_response :success
   end
-#  test "should get new" do
-#    sign_in users(:cole)
-#    get new_playlist_url
-#    assert_response :success
-#  end
 end
