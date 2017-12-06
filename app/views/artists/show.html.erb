@@ -1,14 +1,30 @@
-<div class='row'><h1><%= @artist.name %></h1></div>
+<div class="jumbotron">
+  <h1><%= @artist.name %></h1>
+</div>
 
-<div class='row'>
-  <div class='col-md-6 col-md-2-offset'>
-    <% @artist.albums.each do |album| %>
-      <%= link_to album.name, album %>
-    <% end %>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        Albums
+      </div>
+      <div class="card-body">
+      <% @artist.albums.each do |album| %>
+        <%= link_to album.name, album %>
+      <% end %>
+      </div>
+    </div>
   </div>
-  <div class='col-md-2'>
-    <% @artist.labels.uniq.each do |label| %>
-      <%= link_to label.name, label %>
-    <% end %>
+  <div class="col-sm-4 offset-sm-2">
+    <div class="card">
+      <div class="card-header">
+        Labels
+      </div>
+      <div class="card-body">
+        <% @artist.labels.uniq.each do |label| %>
+        <%= link_to label.name, label %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
