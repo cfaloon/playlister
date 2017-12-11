@@ -1,11 +1,20 @@
-<div class='row'>
-  <h1><%= @song.name %> on <%= link_to @song.album.name, @song.album %></h1>
-  <h2>by <%= link_to @song.album.artist.name, @song.album.artist %></h2>
+<div class="jumbotron">
+  <h1><%= @song.name %></h1>
+  <h5>on <%= link_to @song.album.name, @song.album %>
+  by <%= link_to @song.album.artist.name, @song.album.artist %></h5>
 </div>
 
-<h3>On Playlists</h3>
-<% @song.playlists.each do |playlist| %>
-<div class='row'>
-  <%= link_to playlist.name, playlist %>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-header">
+        <h2>On Playlists</h2>
+      </div>
+      <div class="card-body">
+      <% @song.playlists.each do |playlist| %>
+        <%= link_to playlist.name, playlist %>
+      <% end %>
+      </div>
+    </div>
+  </div>
 </div>
-<% end %>
