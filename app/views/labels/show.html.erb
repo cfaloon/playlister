@@ -1,27 +1,39 @@
-<div class='row'>
+<div class="jumbotron">
   <h1><%= @label.name %></h1>
 </div>
 
-<div class='row'>
-  <div class='col-md-8'>
-    <h2>Albums</h2>
-    <ul>
-    <% @label.albums.each do |album| %>
-      <li>
-        <%= link_to album.name, album_path(album) %>
-      </li>
-    <% end %>
-    </ul>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-header">
+        <h4>Albums</h4>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% @label.albums.each do |album| %>
+          <li>
+            <%= link_to album.name, album_path(album) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <div class='col-md-2'>
-    <h2><%= @label.name %> Artists</h2>
-    <ul>
-      <% @label.artists.each do |artist| %>
-        <li>
-          <%= link_to artist.name, artist_path(artist) %>
-        </li>
-      <% end %>
-    </ul>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h4><%= @label.name %> Artists</h4>
+      </div>
+      <div class="card-body">
+        <ul>
+          <% @label.artists.each do |artist| %>
+          <li>
+            <%= link_to artist.name, artist_path(artist) %>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
