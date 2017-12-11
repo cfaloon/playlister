@@ -1,11 +1,11 @@
-<div class='jumbotron'>
+<div class="jumbotron">
   <h1>New Playlist</h1>
 </div>
 <div class="row">
   <% if @playlist.errors.any? %>
   <h4>The following errors prevented the playlist from saving:</h4>
   <% @playlist.errors.full_messages.each do |message| %>
-  <div class='col-md-12'>
+  <div class="col-sm-12">
     <p class="bg-danger text-center">
       <%= message %>
     </p>
