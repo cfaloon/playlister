@@ -18,6 +18,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params.merge(user: current_user))
 
     if @playlist.save
+      @songs = @playlist.songs
       render 'playlists/show'
     else
       render 'playlists/new'
