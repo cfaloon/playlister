@@ -27,4 +27,11 @@
 <% end %>
 </table>
 </div>
-<%= render 'add_song_form', playlist: @playlist if @playlist.user == current_user %>
+<% if @playlist.in_progress? %>
+  <%= render 'add_song_form', playlist: @playlist if @playlist.user == current_user %>
+  <% confirm_message = 'Are you sure you would like to end this playlist? (You will not be able to add songs afterwords)' %>
+  <%= link_to "End Playlist", end_playlist_path(@playlist),
+                              method: :patch,
+                              confirm: confirm_message,
+                              class: 'btn btn-danger' %>
+<% end %>

@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :find_playlist, only: [:show, :add_song]
+  before_action :find_playlist, only: [:show, :add_song, :end]
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
@@ -11,6 +11,10 @@ class PlaylistsController < ApplicationController
   end
 
   def new
+    if current_user.playlists.in_progress.any?
+      flash[:notice] = "You cannot start a new playlist until you end your current playlist."
+      redirect_to current_user.playlists.in_progress.first
+    end
     @playlist = Playlist.new
   end
 
@@ -28,6 +32,11 @@ class PlaylistsController < ApplicationController
   def add_song
     @playlist.add_song(add_song_params)
     redirect_to playlist_path(@playlist)
+  end
+
+  def end
+    @playlist.ended!
+    redirect_to playlists_path
   end
 
   private

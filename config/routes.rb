@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :playlists
+  resources :playlists do
+    patch 'end', on: :member
+  end
   resources :songs, only: [:show]
   resources :artists, only: [:index, :show]
   resources :albums, only: [:index, :show]
