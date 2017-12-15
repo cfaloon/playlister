@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.all.includes(:user)
   end
 
   def show
