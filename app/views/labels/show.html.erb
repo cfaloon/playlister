@@ -27,7 +27,7 @@
       </div>
       <div class="card-body">
         <ul>
-          <% @label.artists.each do |artist| %>
+          <% @label.artists.uniq.each do |artist| %>
           <li>
             <%= link_to artist.name, artist_path(artist) %>
           </li>
