@@ -3,11 +3,14 @@ class Playlist < ApplicationRecord
   belongs_to :user
   has_many :playlist_songs
   has_many :songs, through: :playlist_songs
-  
-  
+
   # validations
   validates :name, presence: true
   validates :user, presence: true
+  validates :status, uniqueness: {scope: :user}
+
+  # status enum
+  enum status: [:in_progress, :ended]
 
   # instance methods
   def add_song(add_song_params)
