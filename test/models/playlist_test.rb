@@ -37,7 +37,7 @@ class PlaylistTest < ActiveSupport::TestCase
       playlists(:one).add_song({ song_name: 'Magnetic',
                                  artist_name: 'Flyleaf',
                                  label_name: 'Loud & Proud Records',
-                                 album_name: 'Between The Stars' })                          
+                                 album_name: 'Between The Stars' })
     end
   end
 
@@ -46,15 +46,28 @@ class PlaylistTest < ActiveSupport::TestCase
     assert_not unnamed_playlist.save
   end
 
-  test "can create named playlist" do
-    named_playlist = Playlist.new(name: 'Da Best Playlist', user: users(:cole))
-    assert named_playlist.save
-  end
-
-  test "playlist must belong to a user" do
+  test "playlist must belong to a user and have a name" do
     playlist = Playlist.new(name: 'Orphan Playlist')
     assert_not playlist.save
-    playlist = Playlist.new(name: 'Good Time', user: users(:cole))
+    playlist = Playlist.new(name: 'Good Time', user: users(:two))
     assert playlist.save
+  end
+
+  test "new playlist defaults to in_progress status" do
+    playlist = Playlist.new(name: 'Bazinga')
+    assert playlist.in_progress?
+  end
+
+  test "user can only have one in_progress playlist" do
+    playlist = Playlist.new(name: 'Bazinga', user: users(:cole))
+    assert playlist.save
+    assert_not Playlist.new(name: 'Other', user: users(:cole)).valid?
+  end
+
+  test "two users can each have an in_progress playlist" do
+    playlist = Playlist.new(name: 'Bazinga', user: users(:cole))
+    assert playlist.save
+    playlist2 = Playlist.new(name: 'Necropolis', user: users(:two))
+    assert playlist2.save
   end
 end

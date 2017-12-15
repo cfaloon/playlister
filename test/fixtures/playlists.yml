@@ -3,6 +3,7 @@
 one:
   name: Da Best
   user: cole
+  status: 1
 
 two:
   name: Sunshine Daydream
