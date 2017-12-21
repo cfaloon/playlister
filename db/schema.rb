@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20171215174628) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "albums", force: :cascade do |t|
     t.string "name"
-    t.integer "artist_id"
-    t.integer "label_id"
+    t.bigint "artist_id"
+    t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["artist_id"], name: "index_albums_on_artist_id"
@@ -35,8 +38,8 @@ ActiveRecord::Schema.define(version: 20171215174628) do
   end
 
   create_table "playlist_songs", force: :cascade do |t|
-    t.integer "playlist_id"
-    t.integer "song_id"
+    t.bigint "playlist_id"
+    t.bigint "song_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["playlist_id"], name: "index_playlist_songs_on_playlist_id"
@@ -44,7 +47,7 @@ ActiveRecord::Schema.define(version: 20171215174628) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
@@ -54,7 +57,7 @@ ActiveRecord::Schema.define(version: 20171215174628) do
 
   create_table "songs", force: :cascade do |t|
     t.string "name"
-    t.integer "album_id"
+    t.bigint "album_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["album_id"], name: "index_songs_on_album_id"
@@ -78,4 +81,10 @@ ActiveRecord::Schema.define(version: 20171215174628) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "albums", "artists"
+  add_foreign_key "albums", "labels"
+  add_foreign_key "playlist_songs", "playlists"
+  add_foreign_key "playlist_songs", "songs"
+  add_foreign_key "playlists", "users"
+  add_foreign_key "songs", "albums"
 end
