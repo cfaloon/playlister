@@ -1,9 +1,11 @@
-<div class='jumbotron'>
-  <h1><%= @playlist.name %></h1>
+<% content_for :heading, @playlist.name %>
+<% content_for :sub_heading do %>
   <h5>
     by <%= link_to @playlist.user.username, show_user_path(username: @playlist.user.username) %>
   </h5>
-</div>
+<% end %>
+
+
 <div class='row' style="margin-top: 30px;">
   <table class='table table-striped'>
     <tr>

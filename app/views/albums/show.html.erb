@@ -1,8 +1,4 @@
-<div class="jumbotron">
-  <h1><%= @album.name %></h1>
-   by <%= link_to @album.artist.name, artist_path(@album.artist) %> (<%= link_to @album.label.name, @album.label %>)</h1>
-</div>
-
+<% content_for :heading, @album.name %>
 
 <div clas="row">
   <div class="col">

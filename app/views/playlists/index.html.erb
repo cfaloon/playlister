@@ -1,7 +1,7 @@
-<div class='jumbotron'>
-  <h1>All Playlists</h1>
+<% content_for :heading, "All Playlists" %>
+<% content_for :sub_heading do %>
   <%= link_to 'New Playlist', new_playlist_path, class: 'btn btn-primary' %>
-</div>
+<% end %>
 
 <div class="row">
   <% @playlists.each do |pl| %>

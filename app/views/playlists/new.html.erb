@@ -1,6 +1,5 @@
-<div class="jumbotron">
-  <h1>New Playlist</h1>
-</div>
+<% content_for :heading, "New Playlist" %>
+
 <div class="row">
   <% if @playlist.errors.any? %>
   <h4>The following errors prevented the playlist from saving:</h4>

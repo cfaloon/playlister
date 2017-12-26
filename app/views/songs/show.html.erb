@@ -1,8 +1,10 @@
-<div class="jumbotron">
-  <h1><%= @song.name %></h1>
-  <h5>on <%= link_to @song.album.name, @song.album %>
-  by <%= link_to @song.album.artist.name, @song.album.artist %></h5>
-</div>
+<% content_for :heading, @song.name %>
+<% content_for :sub_heading do %>
+  <h5>
+    on <%= link_to @song.album.name, @song.album %>
+    by <%= link_to @song.album.artist.name, @song.album.artist %>
+  </h5>
+<% end %>
 
 <div class="row">
   <div class="col-sm-12">
