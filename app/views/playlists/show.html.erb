@@ -23,7 +23,9 @@
       <%= link_to song.album.name, album_path(song.album) %>
     </td>
     <td>
+      <% if song.album.label %>
       <%= link_to song.album.label.name, song.album.label %>
+      <% end %>
     </td>
   </tr>
 <% end %>

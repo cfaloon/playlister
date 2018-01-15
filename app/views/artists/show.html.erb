@@ -9,7 +9,9 @@
       <div class="card-body">
       <% @albums.each do |album| %>
         <%= link_to album.name, album %>
-        (<%= link_to album.label.name, album.label %>)
+        <% if album.label %>
+	(<%= link_to album.label.name, album.label %>)
+	<% end %>
         <br />
       <% end %>
       </div>
