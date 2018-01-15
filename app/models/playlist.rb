@@ -7,8 +7,7 @@ class Playlist < ApplicationRecord
   # validations
   validates :name, presence: true
   validates :user, presence: true
-  validates :status, uniqueness: { scope: :user }
-
+  validates :status, uniqueness: { scope: :user, if: :in_progress? }
   # status enum
   enum status: [:in_progress, :ended]
 

@@ -70,4 +70,11 @@ class PlaylistTest < ActiveSupport::TestCase
     playlist2 = Playlist.new(name: 'Necropolis', user: users(:two))
     assert playlist2.save
   end
+
+  test "user can have two ended playlists" do
+    playlist = Playlist.new(name: 'Foo', user: users(:cole), status: :ended)
+    assert playlist.save
+    playlist2 = Playlist.new(name: 'Bar', user: users(:two), status: :ended)
+    assert playlist2.valid?
+  end
 end
