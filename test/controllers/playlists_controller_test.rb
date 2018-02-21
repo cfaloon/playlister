@@ -17,7 +17,7 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create new playlist" do
     sign_in users(:cole)
-    post playlists_path(playlist: { name: 'Da Best'})
+    post playlists_path(playlist: { name: 'Da Best' })
     assert_response :success
   end
 
