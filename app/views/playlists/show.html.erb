@@ -9,15 +9,15 @@
 <div class='row' style="margin-top: 30px;">
   <table class='table table-striped'>
     <tr>
-      <th>Song</th><th>Artist</th><th>Album</th><th>Label</th>
+      <th>Artist</th><th>Song</th><th>Album</th><th>Label</th>
     </tr>
 <% @songs.each do |song| %>
   <tr>
     <td>
-      <%= link_to song.name, song_path(song) %>
+      <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
     </td>
     <td>
-      <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
+      <%= link_to song.name, song_path(song) %>
     </td>
     <td>
       <%= link_to song.album.name, album_path(song.album) %>
