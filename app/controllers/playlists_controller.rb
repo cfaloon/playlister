@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @playlists = Playlist.all.includes(:user)
+    @playlists = Playlist.order(created_at: :desc).includes(:user).page params[:page]
   end
 
   def show
