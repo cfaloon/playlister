@@ -1,9 +1,9 @@
 class AlbumsController < ApplicationController
-  def show
-    @album = Album.find(params[:id])
+  def index
+    @albums = Album.order(:name).page params[:page]
   end
 
-  def index
-    @albums = Album.all
+  def show
+    @album = Album.find(params[:id])
   end
 end
