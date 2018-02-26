@@ -1,6 +1,6 @@
 class LabelsController < ApplicationController
   def index
-    @labels = Label.all
+    @labels = Label.order(:name).page params[:page]
   end
 
   def show
