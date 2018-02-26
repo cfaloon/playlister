@@ -1,7 +1,8 @@
-<div class="col-sm-3">
-  <div class="card">
-    <div class="card-body">
-      <h4><%= link_to artist.name, artist %></h4>
-    </div>
+<div class="card">
+  <div class="card-body">
+    <h4><%= link_to artist.name, artist %></h4>
+  </div>
+  <div class="card-footer text-right">
+    <small class="text-muted"><%= pluralize artist.albums.count, 'album' %></small>
   </div>
 </div>

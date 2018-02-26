@@ -1,7 +1,10 @@
-<div class="col-sm-3">
   <div class="card">
     <div class="card-body">
       <h4><%= link_to label.name, label %></h4>
     </div>
+    <div class="card-footer text-right">
+      <small class="text-muted">
+        <%= pluralize label.albums.count, 'album' %>
+      </small>
+    </div>
   </div>
-</div>
