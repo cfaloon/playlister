@@ -1,17 +1,17 @@
 <% content_for :heading, 'All Albums' %>
 
-
-
-<div class="row">
-<% @albums.each do |album| %>
-<div class="col-sm-3">
-  <div class="card">
-    <div class="card-body">
-    <h4><%= link_to album.name, album_path(album) %></h4>
+<div class="card-columns">
+  <% @albums.each do |album| %>
+    <div class="card">
+      <div class="card-body">
+        <h4><%= link_to album.name, album_path(album) %></h4>
+      </div>
+      <div class="card-footer text-right">
+        <small class="text-muted">by </small>
+        <%= link_to album.artist.name, artist_path(album.artist) %>
+      </div>
     </div>
-  </div>
-</div>
-<% end %>
+  <% end %>
 </div>
 
 <%= paginate @albums %>
