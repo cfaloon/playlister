@@ -3,19 +3,8 @@
   <%= link_to 'New Playlist', new_playlist_path, class: 'btn btn-primary' %>
 <% end %>
 
-<div class="row">
-  <% @playlists.each do |pl| %>
-    <div class="col-sm-3">
-      <%= link_to pl do %>
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title"><%= pl.name %></h4>
-            <%= link_to "by #{pl.user.username}", show_user_path(username: pl.user.username) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+<div class="card-columns">
+  <%= render @playlists %>
 </div>
 
 <%= paginate @playlists %>
