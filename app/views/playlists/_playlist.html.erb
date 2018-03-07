@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-body">
+    <%= link_to playlist.name, playlist %>
+  </div>
+  <div class="card-footer text-right">
+    <small class="text-muted"><%= link_to playlist.user.username, show_user_path(username: playlist.user.username) %></small>
+  </div>
+</div>
