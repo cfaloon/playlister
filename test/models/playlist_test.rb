@@ -46,35 +46,41 @@ class PlaylistTest < ActiveSupport::TestCase
     assert_not unnamed_playlist.save
   end
 
+  test "cannot create playlist without played_at" do
+    pl = Playlist.new(name: 'Non-chalant', played_at: nil)
+    assert_not pl.valid?
+    assert pl.errors.has_key? :played_at
+  end
+
   test "playlist must belong to a user and have a name" do
-    playlist = Playlist.new(name: 'Orphan Playlist')
+    playlist = Playlist.new(name: 'Orphan Playlist', played_at: Time.now)
     assert_not playlist.save
-    playlist = Playlist.new(name: 'Good Time', user: users(:two))
+    playlist = Playlist.new(name: 'Good Time', played_at: Time.now, user: users(:two))
     assert playlist.save
   end
 
   test "new playlist defaults to in_progress status" do
-    playlist = Playlist.new(name: 'Bazinga')
+    playlist = Playlist.new(name: 'Bazinga', played_at: Time.now)
     assert playlist.in_progress?
   end
 
   test "user can only have one in_progress playlist" do
-    playlist = Playlist.new(name: 'Bazinga', user: users(:cole))
+    playlist = Playlist.new(name: 'Bazinga', user: users(:cole), played_at: Time.now)
     assert playlist.save
-    assert_not Playlist.new(name: 'Other', user: users(:cole)).valid?
+    assert_not Playlist.new(name: 'Other', user: users(:cole), played_at: Time.now).valid?
   end
 
   test "two users can each have an in_progress playlist" do
-    playlist = Playlist.new(name: 'Bazinga', user: users(:cole))
+    playlist = Playlist.new(name: 'Bazinga', user: users(:cole), played_at: Time.now)
     assert playlist.save
-    playlist2 = Playlist.new(name: 'Necropolis', user: users(:two))
+    playlist2 = Playlist.new(name: 'Necropolis', user: users(:two), played_at: Time.now)
     assert playlist2.save
   end
 
   test "user can have two ended playlists" do
-    playlist = Playlist.new(name: 'Foo', user: users(:cole), status: :ended)
+    playlist = Playlist.new(name: 'Foo', user: users(:cole), status: :ended, played_at: Time.now)
     assert playlist.save
-    playlist2 = Playlist.new(name: 'Bar', user: users(:two), status: :ended)
+    playlist2 = Playlist.new(name: 'Bar', user: users(:two), status: :ended, played_at: Time.now)
     assert playlist2.valid?
   end
 end

@@ -4,7 +4,9 @@ one:
   name: Da Best
   user: cole
   status: 1
+  played_at: 2018-03-07 21:40:18.840942
 
 two:
   name: Sunshine Daydream
   user: thomas
+  played_at: 2018-03-07 21:40:18.840942
