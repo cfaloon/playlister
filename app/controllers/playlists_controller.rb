@@ -1,6 +1,6 @@
 class PlaylistsController < ApplicationController
-  before_action :find_playlist, only: [:show, :add_song, :end]
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :find_playlist, only: [:show, :edit, :update, :add_song, :end]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :create]
 
   def index
     @playlists = Playlist.order(created_at: :desc).includes(:user).page params[:page]
@@ -18,6 +18,12 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new
   end
 
+  def edit
+    unless @playlist.user_id == current_user.id
+      render status: :unauthorized
+    end
+  end
+
   def create
     @playlist = Playlist.new(playlist_params.merge(user: current_user))
 
@@ -26,6 +32,14 @@ class PlaylistsController < ApplicationController
       render 'playlists/show'
     else
       render 'playlists/new'
+    end
+  end
+
+  def update
+    if @playlist.update(playlist_params)
+      redirect_to @playlist, notice: 'Playlist was successfully updated.'
+    else
+      render 'playlists/edit'
     end
   end
 

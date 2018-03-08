@@ -4,9 +4,12 @@
     by <%= link_to @playlist.user.username, show_user_path(username: @playlist.user.username) %>
     on <%= @playlist.played_at %>
   </h5>
+  <% if @playlist.user_id == current_user.id %>
+    <%= link_to 'Edit', edit_playlist_path(@playlist), class: 'btn btn-warning' %>
+  <% end %>
 <% end %>
 
-<div class='row' style="margin-top: 30px;">
+<div class='row' style='margin-top: 30px;'>
   <table class='table table-striped'>
     <tr>
       <th>Artist</th><th>Song</th><th>Album</th><th>Label</th>
