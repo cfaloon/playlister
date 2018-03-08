@@ -35,14 +35,16 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update existing playlist" do
     sign_in users(:cole)
-    patch playlist_path(playlists(:one), playlist: { name: 'Updated!' })
+    one = playlists(:one)
+    patch playlist_path(id: one.id, playlist: { name: 'Updated!' })
     assert_response :redirect
   end
 
   test "should not update playlist that is not yours" do
     sign_in users(:two)
-    patch playlist_path(playlists(:one), playlist: { name: 'Updated!' })
-    assert_response :unauthorized
+    one = playlists(:one)
+    patch playlist_path(one, playlist: { name: 'Updated!' })
+    assert_response :redirect
   end
 
   test "should get index" do
@@ -50,4 +52,3 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 end
-
