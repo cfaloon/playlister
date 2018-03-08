@@ -2,9 +2,9 @@
 <% content_for :sub_heading do %>
   <h5>
     by <%= link_to @playlist.user.username, show_user_path(username: @playlist.user.username) %>
+    on <%= @playlist.played_at %>
   </h5>
 <% end %>
-
 
 <div class='row' style="margin-top: 30px;">
   <table class='table table-striped'>
