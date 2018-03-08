@@ -39,6 +39,12 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
   end
 
+  test "should not update playlist that is not yours" do
+    sign_in users(:two)
+    patch playlist_path(playlists(:one), playlist: { name: 'Updated!' })
+    assert_response :unauthorized
+  end
+
   test "should get index" do
     get playlists_url
     assert_response :success

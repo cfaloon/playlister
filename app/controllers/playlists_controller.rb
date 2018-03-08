@@ -20,7 +20,7 @@ class PlaylistsController < ApplicationController
 
   def edit
     unless @playlist.user_id == current_user.id
-      render status: :unauthorized
+      render text: 'UNAUTHORIZED', status: :unauthorized
     end
   end
 
@@ -36,6 +36,8 @@ class PlaylistsController < ApplicationController
   end
 
   def update
+    render text: 'UNAUTHORIZED', status: :unauthorized unless @playlist.user_id == current_user.id
+
     if @playlist.update(playlist_params)
       redirect_to @playlist, notice: 'Playlist was successfully updated.'
     else
