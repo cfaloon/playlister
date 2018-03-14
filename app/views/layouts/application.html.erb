@@ -28,6 +28,11 @@
 
   <div class="container-responsive">
     <div class="jumbotron">
+      <% flash.each do |level, message| %>
+        <p class='bg-<%= level %> text-center'>
+          <%= message %>
+        </p>
+      <% end %>
       <div class="container">
         <h1><%= yield :heading %></h1>
         <%= yield :sub_heading %>
@@ -36,16 +41,6 @@
   </div>
 
   <div class='container'>
-
-    <% flash.each do |level, message| %>
-    <div class='row'>
-      <div class='col-sm-6 offset-md-3'>
-        <p class='bg-<%= level %> text-center'>
-          <%= message %>
-        </p>
-      </div>
-    </div>
-    <% end %>
     <%= yield %>
   </div>
 </body>
