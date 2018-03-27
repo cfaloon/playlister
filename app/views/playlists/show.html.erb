@@ -31,7 +31,7 @@
       <% end %>
     </td>
     <td>
-
+      <%= render 'playlist_songs/actions', playlist_song: song.playlist_songs.find_by(playlist: @playlist) %>
     </td>
   </tr>
 <% end %>

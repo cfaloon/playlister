@@ -11,12 +11,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :playlist_songs, only: [:edit]
+  resources :playlist_songs, only: [:edit, :destroy] do
+    member do
+      patch 'move_higher'
+      patch 'move_lower'
+    end
+  end
   resources :songs, only: [:show]
   resources :artists, only: [:index, :show]
   resources :albums, only: [:index, :show]
   resources :labels, only: [:index, :show]
-  
+
   root 'playlists#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
