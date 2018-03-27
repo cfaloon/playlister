@@ -31,7 +31,9 @@
       <% end %>
     </td>
     <td>
+      <% if @playlist.user_id == current_user.id %>
       <%= render 'playlist_songs/actions', playlist_song: song.playlist_songs.find_by(playlist: @playlist) %>
+      <% end %>
     </td>
   </tr>
 <% end %>
