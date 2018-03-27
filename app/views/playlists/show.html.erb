@@ -12,9 +12,9 @@
 <div class='row' style='margin-top: 30px;'>
   <table class='table table-striped'>
     <tr>
-      <th>Artist</th><th>Song</th><th>Album</th><th>Label</th>
+      <th>Artist</th><th>Song</th><th>Album</th><th>Label</th><th>Actions</th>
     </tr>
-<% @songs.each do |song| %>
+<% @playlist.songs.includes(album: [:artist, :label]).each do |song| %>
   <tr>
     <td>
       <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
@@ -29,6 +29,9 @@
       <% if song.album.label %>
       <%= link_to song.album.label.name, song.album.label %>
       <% end %>
+    </td>
+    <td>
+
     </td>
   </tr>
 <% end %>

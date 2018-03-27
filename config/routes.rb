@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       post 'add_song'
     end
   end
-  
+
+  resources :playlist_songs, only: [:edit]
   resources :songs, only: [:show]
   resources :artists, only: [:index, :show]
   resources :albums, only: [:index, :show]

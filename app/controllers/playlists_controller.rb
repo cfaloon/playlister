@@ -7,7 +7,6 @@ class PlaylistsController < ApplicationController
   end
 
   def show
-    @songs = @playlist.songs.order('playlist_songs.created_at').includes(album: [:artist, :label])
   end
 
   def new
