@@ -1,0 +1,18 @@
+<%= link_to edit_playlist_song_path(playlist_song) do %>
+  <%= fa_icon 'edit' %>
+<% end %>
+<%= link_to playlist_song_path(playlist_song), method: :delete do %>
+  <%= fa_icon 'eraser' %>
+<% end %>
+<% unless playlist_song.first? %>
+  <%= link_to move_higher_playlist_song_path(playlist_song), method: :patch do %>
+    <%= fa_icon 'arrow-up'  %>
+  <% end %>
+<% end %>
+
+
+<% unless playlist_song.last? %>
+  <%= link_to move_lower_playlist_song_path(playlist_song), method: :patch do %>
+    <%= fa_icon 'arrow-down' %>
+  <% end %>
+<% end %>
