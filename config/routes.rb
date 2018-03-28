@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :playlist_songs, only: [:edit, :destroy] do
+  resources :playlist_songs, only: [:destroy] do
     member do
       patch 'move_higher'
       patch 'move_lower'
