@@ -4,6 +4,6 @@ class LabelsController < ApplicationController
   end
 
   def show
-    @label = Label.where(id: params[:id]).includes(:artists, :albums).first
+    @label = Label.find(params[:id])
   end
 end

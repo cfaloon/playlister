@@ -18,8 +18,12 @@ class Playlist < ApplicationRecord
     label = Label.find_or_create_by(name: add_song_params[:label_name])
     artist = Artist.find_or_create_by(name: add_song_params[:artist_name])
     album = Album.find_or_create_by(name: add_song_params[:album_name],
-                                    artist: artist, label: label)
-    song = Song.find_or_initialize_by(name: add_song_params[:song_name], album: album)
+                                    label_id: label.id)
+    album.artists << artist unless album.artists.include? artist
+    album.save
+    song = Song.find_or_initialize_by(name: add_song_params[:song_name],
+                                      album: album,
+                                      artist: artist)
     song.playlists << self
     song.save
   end
