@@ -1,8 +1,9 @@
 class Song < ApplicationRecord
   # relations
   belongs_to :album
-  has_many :playlist_songs, inverse_of: :song
+  belongs_to :artist
+  has_many :playlist_songs
   has_many :playlists, through: :playlist_songs
   # validations
-  validates :name, :playlists, presence: true
+  validates :name, :playlists, :album_id, presence: true
 end

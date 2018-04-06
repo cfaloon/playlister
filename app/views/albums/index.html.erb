@@ -8,7 +8,9 @@
       </div>
       <div class="card-footer text-right">
         <small class="text-muted">by </small>
-        <%= link_to album.artist.name, artist_path(album.artist) %>
+        <% album.artists.each do |artist| %>
+          <%= link_to artist.name, artist_path(artist) %>
+        <% end %>
       </div>
     </div>
   <% end %>

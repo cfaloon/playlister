@@ -14,10 +14,10 @@
     <tr>
       <th>Artist</th><th>Song</th><th>Album</th><th>Label</th><th>Actions</th>
     </tr>
-<% @playlist.songs.includes(album: [:artist, :label]).each do |song| %>
+<% @playlist.songs.includes(:artist, album: [:label]).each do |song| %>
   <tr>
     <td>
-      <%= link_to song.album.artist.name, artist_path(song.album.artist) %>
+      <%= link_to song.artist.name, artist_path(song.artist) %>
     </td>
     <td>
       <%= link_to song.name, song_path(song) %>
