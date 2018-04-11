@@ -51,4 +51,10 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     get playlists_url
     assert_response :success
   end
+
+  test "should get show" do
+    one = playlists(:one)
+    get playlist_path(one)
+    assert_response :success
+  end
 end

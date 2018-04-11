@@ -4,7 +4,7 @@
     by <%= link_to @playlist.user.username, show_user_path(username: @playlist.user.username) %>
     on <%= @playlist.played_at %>
   </h5>
-  <% if @playlist.user_id == current_user.id %>
+  <% if @playlist.user == current_user %>
     <%= link_to 'Edit', edit_playlist_path(@playlist), class: 'btn btn-warning' %>
   <% end %>
 <% end %>
@@ -31,7 +31,7 @@
       <% end %>
     </td>
     <td>
-      <% if @playlist.user_id == current_user.id %>
+      <% if @playlist.user == current_user %>
       <%= render 'playlist_songs/actions', playlist_song: song.playlist_songs.find_by(playlist: @playlist) %>
       <% end %>
     </td>
