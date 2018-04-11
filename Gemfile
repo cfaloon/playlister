@@ -27,11 +27,14 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # devise for authentication
 gem 'devise'
+
 gem 'jquery-rails'
 gem 'faker'
 gem 'kaminari'
 gem 'acts_as_list'
 gem 'font-awesome-rails'
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -39,6 +42,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'factory_bot_rails'
 end
 
 group :development do
