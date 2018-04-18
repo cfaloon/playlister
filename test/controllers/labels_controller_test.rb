@@ -3,9 +3,9 @@ class LabelsControllerTest < ActionDispatch::IntegrationTest
     get labels_path
     assert_response :success
   end
-  
+
   test "should get label show" do
-    get label_path(labels(:sci))
+    get label_path(create(:label))
     assert_response :success
   end
 end

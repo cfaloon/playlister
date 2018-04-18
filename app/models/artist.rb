@@ -4,5 +4,5 @@ class Artist < ApplicationRecord
   has_many :albums, through: :album_artists
   has_many :labels, through: :albums
   # validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end

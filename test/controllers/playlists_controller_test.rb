@@ -3,21 +3,31 @@ require 'test_helper'
 class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
+  setup do
+    @user1 = create(:user)
+    @user2 = create(:user, username: 'other_user', email: 'other_user@domain.com')
+    @user1.playlists.create(attributes_for(:playlist, user: nil))
+    @user2.playlists.create(attributes_for(:playlist, user: nil))
+  end
+
   test "should get new" do
-    sign_in users(:cole)
+    @user1.playlists.first.ended!
+    sign_in @user1
     get new_playlist_url
     assert_response :success
   end
 
   test 'should get edit if playlist belongs to user' do
-    sign_in users(:cole)
-    get edit_playlist_path(playlists(:one))
+    @user1.playlists.create(attributes_for(:playlist, user: nil))
+    sign_in @user1
+
+    get edit_playlist_path(@user1.playlists.first)
     assert_response :success
   end
 
   test "get edit should be unauthoized if not owner" do
-    sign_in users(:two)
-    get edit_playlist_path(playlists(:one))
+    sign_in @user2
+    get edit_playlist_path(@user1.playlists.first)
     assert_response :unauthorized
   end
 
@@ -28,22 +38,22 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create new playlist" do
-    sign_in users(:cole)
+    sign_in @user1
     post playlists_path(playlist: { name: 'Da Best' })
     assert_response :success
-  end
+    end
 
   test "should update existing playlist" do
-    sign_in users(:cole)
-    one = playlists(:one)
-    patch playlist_path(id: one.id, playlist: { name: 'Updated!' })
+    sign_in @user1
+
+    patch playlist_path(id: @user1.playlists.first.id, playlist: { name: 'Updated!' })
     assert_response :redirect
   end
 
   test "should not update playlist that is not yours" do
-    sign_in users(:two)
-    one = playlists(:one)
-    patch playlist_path(one, playlist: { name: 'Updated!' })
+    sign_in @user2
+
+    patch playlist_path(@user1.playlists.first, playlist: { name: 'Updated!' })
     assert_response :redirect
   end
 
@@ -53,8 +63,7 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    one = playlists(:one)
-    get playlist_path(one)
+    get playlist_path(@user1.playlists.first)
     assert_response :success
   end
 end

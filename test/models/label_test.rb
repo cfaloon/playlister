@@ -1,15 +1,16 @@
 require 'test_helper'
 
 class LabelTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
-
   test "creation" do
-    nameless_label = Label.new
-    assert_not nameless_label.save
+    label = build(:label, name: nil)
+    assert_not label.valid?
+  end
 
-    named_label = Label.new({ name: '4AD' })
-    assert named_label.save
+  test 'label saves duplicate name fails' do
+    label = build(:label)
+    assert label.save
+
+    duplicate_label_name = build(:label)
+    assert_not duplicate_label_name.valid?
   end
 end

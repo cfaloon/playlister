@@ -3,20 +3,20 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   test "User creation" do
     # no username, failed creation
-    user_without_username = User.new(username: nil, email: 'testy@test.com', password: 'pwd123')
-    assert_not user_without_username.save
+    user_without_username = build(:user, username: nil)
+    assert_not user_without_username.valid?
     # no email, failed creation
-    user_without_email = User.new(username: 'cole', email: nil, password: 'pwd123')
-    assert_not user_without_email.save
+    user_without_email = build(:user, email: nil)
+    assert_not user_without_email.valid?
     # no password, failed creation
-    user_without_password = User.new(username: 'cole', email: 'testy@test.com', password: nil)
-    assert_not user_without_password.save
+    user_without_password = build(:user, password: nil)
+    assert_not user_without_password.valid?
     # successful creation
-    good_user = User.new(username: 'cole', email: 'testy@test.com', password: 'pwd123')
-    assert good_user.save
+    good_user = build(:user)
+    assert good_user.valid?
     # enforce uniqueness of username
-    first_user = User.create(username: 'user1', email: 'user1@test.com', password: '456lmnop')
-    second_user = User.new(username: 'user1', email: 'user2@test.com', password: 'abc123')
-    assert_not second_user.save
+    first_user = create(:user, username: 'foo')
+    second_user = build(:user, username: 'foo')
+    assert_not second_user.valid?
   end
 end
