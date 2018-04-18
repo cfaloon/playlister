@@ -1,11 +1,16 @@
 require 'test_helper'
 
 class ArtistTest < ActiveSupport::TestCase
-  test 'creation' do
-    nameless_artist = Artist.new
-    assert_not nameless_artist.save
-    
-    named_artist = Artist.new({ name: 'STS9' })
-    assert named_artist.save
+  test 'nameless artist fails' do
+    artist = build(:artist, name: nil)
+    assert_not artist.valid?
+  end
+  
+  test 'named artist valid, duplicate name fails' do
+    artist = create(:artist)
+    assert artist.valid?
+
+    duplicate_artist_name = build(:artist)
+    assert_not duplicate_artist_name.valid?
   end
 end

@@ -3,5 +3,5 @@ class Label < ApplicationRecord
   has_many :albums
   has_many :artists, through: :albums
   # validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 end

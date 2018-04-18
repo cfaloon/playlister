@@ -5,8 +5,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get album show" do
-    get album_path(albums(:one))
+    get album_path(create(:album))
     assert_response :success
   end
 end
-  

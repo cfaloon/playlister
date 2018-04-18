@@ -5,7 +5,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get artist show" do
-    get artist_path(artists(:cream))
+    get artist_path(create(:artist))
     assert_response :success
   end
 end

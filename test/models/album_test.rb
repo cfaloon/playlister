@@ -1,15 +1,18 @@
 require 'test_helper'
 
 class AlbumTest < ActiveSupport::TestCase
-  test "creation" do
-    unnamed_album = Album.new(name: nil, artists: [artists(:cream)])
-    assert_not unnamed_album.save
+  test "unnamed album" do
+    album = build(:album, name: nil)
+    assert_not album.valid?
+  end
 
-    no_artist_album = Album.new(name: 'Gilead', artists: [])
-    assert_not no_artist_album.save
+  test 'no artist album' do
+    album = build(:album, artists: [])
+    assert_not album.valid?
+  end
 
-    saveable_album = Album.new(name: 'Wheels of Fire', artists: [artists(:cream)])
-
-    assert saveable_album.save
+  test 'valid album' do
+    album = build(:album)
+    assert album.valid?
   end
 end

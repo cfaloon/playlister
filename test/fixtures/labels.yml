@@ -1,7 +1,0 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-sci:
-  name: SCI Fidelity Records
-
-total_exp:
-  name: Total Experience Records
