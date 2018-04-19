@@ -9,36 +9,10 @@
   <% end %>
 <% end %>
 
-<div class='row' style='margin-top: 30px;'>
-  <table class='table table-striped'>
-    <tr>
-      <th>Artist</th><th>Song</th><th>Album</th><th>Label</th><th>Actions</th>
-    </tr>
-<% @playlist.songs.includes(:artist, album: [:label]).each do |song| %>
-  <tr>
-    <td>
-      <%= link_to song.artist.name, artist_path(song.artist) %>
-    </td>
-    <td>
-      <%= link_to song.name, song_path(song) %>
-    </td>
-    <td>
-      <%= link_to song.album.name, album_path(song.album) %>
-    </td>
-    <td>
-      <% if song.album.label %>
-      <%= link_to song.album.label.name, song.album.label %>
-      <% end %>
-    </td>
-    <td>
-      <% if @playlist.user == current_user %>
-      <%= render 'playlist_songs/actions', playlist_song: song.playlist_songs.find_by(playlist: @playlist) %>
-      <% end %>
-    </td>
-  </tr>
-<% end %>
-</table>
+<div id='playlist-songs-table-container' class='row' style='margin-top: 30px;'>
+  <%= render 'playlist_songs_table', playlist: @playlist %>
 </div>
+
 <% if @playlist.in_progress? %>
   <%= render 'add_song_form', playlist: @playlist if @playlist.user == current_user %>
   <% confirm_message = 'Are you sure you would like to end this playlist? (You will not be able to add songs afterwords)' %>
