@@ -8,37 +8,36 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
-# Use pg as the database for Active Record
-gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# bootstrap 4
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
-# devise for authentication
-gem 'devise'
-gem 'jquery-rails'
-gem 'faker'
-gem 'kaminari'
+
 gem 'acts_as_list'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'devise'
+gem 'faker'
 gem 'font-awesome-rails'
+gem 'jquery-rails'
+gem 'kaminari'
+gem 'pg'
+gem 'pg_search'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
   gem 'factory_bot_rails'
+  gem 'selenium-webdriver'
 end
 
 group :development do
