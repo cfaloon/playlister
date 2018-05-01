@@ -1,4 +1,21 @@
-<% content_for :heading, 'All Labels' %>
+<% if params[:q] %>
+  <% content_for :heading, "Showing label results for '#{params[:q]}'" %>
+<% else %>
+  <% content_for :heading, 'All Labels' %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-8 offset-2 mb-2">
+    <% unless @labels.any? %>
+    <div class="bg-warning px-2 mb-2">
+      <h3>No labels found.</h3>
+    </div>
+    <% end %>
+    <%= form_with action: labels_path, model: nil, method: :get, local: true do |f| %>
+      <%= f.text_field :q, placeholder: 'Search', class: 'form-control' %>
+    <% end %>
+  </div>
+</div>
 
 <div class="card-columns">
   <%= render @labels %>

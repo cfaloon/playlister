@@ -1,4 +1,21 @@
-<% content_for :heading, 'All Artists' %>
+<% if params[:q] %>
+  <% content_for :heading, "Showing artist results for '#{params[:q]}'" %>
+<% else %>
+  <% content_for :heading, 'All Artists' %>
+<% end %>
+
+<div class="row">
+  <div class="col-sm-8 offset-2 mb-2">
+    <% unless @artists.any? %>
+    <div class="bg-warning px-2 mb-2">
+      <h3>No artists found.</h3>
+    </div>
+    <% end %>
+    <%= form_with action: artists_path, model: nil, method: :get, local: true do |f| %>
+      <%= f.text_field :q, placeholder: 'Search', class: 'form-control' %>
+    <% end %>
+  </div>
+</div>
 
 <div class="card-columns">
   <%= render @artists %>

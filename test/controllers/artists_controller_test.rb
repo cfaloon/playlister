@@ -1,5 +1,5 @@
 class ArtistsControllerTest < ActionDispatch::IntegrationTest
-
+  # index action
   test "should get artists index" do
     get artists_path
     assert_response :success
@@ -20,6 +20,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     refute_includes assigns(:artists), artist2
   end
 
+  # show action
   test "should get artist show" do
     get artist_path(create(:artist))
     assert_response :success
