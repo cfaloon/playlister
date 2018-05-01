@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def index
     @artists = Artist.order(:name).page params[:page]
+    respond_to :html, :json
   end
 
   def show
