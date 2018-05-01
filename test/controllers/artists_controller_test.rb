@@ -4,6 +4,11 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should get artists index as json" do
+    get artists_path, as: :json
+    assert_response :success
+  end
+
   test "should get artist show" do
     get artist_path(create(:artist))
     assert_response :success
