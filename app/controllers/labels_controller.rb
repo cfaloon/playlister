@@ -1,6 +1,11 @@
 class LabelsController < ApplicationController
   def index
-    @labels = Label.order(:name).page params[:page]
+    if params.key? :q
+      @labels = Label.search_by_name(params[:q])
+    else
+      @labels = Label.all
+    end
+    @labels = @labels.order(:name).page params[:page]
     respond_to :html, :json
   end
 
