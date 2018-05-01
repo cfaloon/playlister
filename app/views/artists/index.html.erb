@@ -1,8 +1,4 @@
-<% if params[:q] %>
-  <% content_for :heading, "Showing artist results for '#{params[:q]}'" %>
-<% else %>
-  <% content_for :heading, 'All Artists' %>
-<% end %>
+<%= render 'shared/index_heading', resource: 'artist' %>
 
 <%= render 'shared/search_form', collection: @artists, action: artists_path  %>
 

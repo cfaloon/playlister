@@ -13,7 +13,7 @@ class AlbumsControllerTest < ActionDispatch::IntegrationTest
     album1 = create(:album, name: 'In Melody', artists: [create(:artist, name: 'Nils Frahm')])
     album2 = create(:album, name: 'A Rainbow in Curved Air', artists: [create(:artist, name: 'Terry Riley')])
 
-    get albums_path, params: {q: 'Melod'}
+    get albums_path, params: { q: 'Melod' }
 
     assert_includes assigns(:albums), album1
     refute_includes assigns(:albums), album2

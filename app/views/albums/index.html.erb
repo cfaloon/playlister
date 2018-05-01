@@ -1,25 +1,9 @@
-<% if params[:q] %>
-  <% content_for :heading, "Showing album results for '#{params[:q]}'" %>
-<% else %>
-  <% content_for :heading, 'All Albums' %>
-<% end %>
+<%= render 'shared/index_heading', resource: 'album' %>
 
 <%= render 'shared/search_form', collection: @albums, action: albums_path  %>
 
 <div class="card-columns">
-  <% @albums.each do |album| %>
-    <div class="card">
-      <div class="card-body">
-        <h4><%= link_to album.name, album_path(album) %></h4>
-      </div>
-      <div class="card-footer text-right">
-        <small class="text-muted">by </small>
-        <% album.artists.each do |artist| %>
-          <%= link_to artist.name, artist %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+  <%= render @albums %>
 </div>
 
 <%= paginate @albums %>

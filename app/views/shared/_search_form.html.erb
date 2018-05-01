@@ -5,8 +5,16 @@
       <h3>No results found.</h3>
     </div>
     <% end %>
-    <%= form_with action: action, model: nil, method: :get, local: true do |f| %>
-      <%= f.text_field :q, placeholder: 'Search', class: 'form-control' %>
+
+    <%= form_with action: action, method: :get, local: true do |f| %>
+    <div class='form-row'>
+      <div class='col-sm-10'>
+        <%= f.text_field :q, placeholder: "Find #{collection.klass.to_s.pluralize}...", class: 'form-control' %>
+      </div>
+      <div class='col-sm-2'>
+        <%= f.submit 'Search', class: 'btn btn-primary form-control' %>
+      </div>
+    </div>
     <% end %>
   </div>
 </div>

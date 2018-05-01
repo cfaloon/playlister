@@ -1,11 +1,6 @@
-<% if params[:q] %>
-  <% content_for :heading, "Showing label results for '#{params[:q]}'" %>
-<% else %>
-  <% content_for :heading, 'All Labels' %>
-<% end %>
+<%= render 'shared/index_heading', resource: 'label' %>
 
 <%= render 'shared/search_form', collection: @labels, action: labels_path  %>
-
 
 <div class="card-columns">
   <%= render @labels %>
