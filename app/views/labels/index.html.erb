@@ -1,4 +1,6 @@
-<% content_for :heading, 'All Labels' %>
+<%= render 'shared/index_heading', resource: 'label' %>
+
+<%= render 'shared/search_form', collection: @labels, action: labels_path  %>
 
 <div class="card-columns">
   <%= render @labels %>

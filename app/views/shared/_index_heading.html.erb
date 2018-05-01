@@ -1,0 +1,5 @@
+<% if params[:q] %>
+  <% content_for :heading, "Showing #{resource} results for '#{params[:q]}'" %>
+<% else %>
+  <% content_for :heading, "All #{resource.capitalize.pluralize}" %>
+<% end %>
