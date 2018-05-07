@@ -1,0 +1,23 @@
+.select2-container .select2-selection--single{
+  cursor: text;
+}
+
+.select2-selection__arrow {
+  display: none;
+}
+
+input[name=song_name] {
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 4px;
+  color: rgb(33, 37, 41);
+  line-height: 1;
+  padding-left: 8px;
+  padding-right: 20px;
+  width: 100%;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
