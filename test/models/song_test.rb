@@ -20,7 +20,7 @@ class SongTest < ActiveSupport::TestCase
   end
 
   test 'no artist' do
-    #lack of artist shuld fail to save
+    # lack of artist should fail to save
     no_artist_song = build(:song, artist_id: nil)
     assert_not no_artist_song.valid?
   end
