@@ -1,5 +1,5 @@
 class PlaylistsController < ApplicationController
-  before_action :find_playlist, only: [:show, :edit, :update, :add_song, :end]
+  before_action :find_playlist, only: [:show, :edit, :update, :add_track, :end]
   before_action :authenticate_user!, only: [:new, :edit, :update, :create]
 
   def index
@@ -44,8 +44,8 @@ class PlaylistsController < ApplicationController
     end
   end
 
-  def add_song
-    @playlist.add_song(add_song_params)
+  def add_track
+    AddTrackService.new(@playlist).append(add_track_params)
     redirect_to playlist_path(@playlist)
   end
 
@@ -55,8 +55,13 @@ class PlaylistsController < ApplicationController
   end
 
   private
-  def add_song_params
-    params.permit([:artist_name, :album_name, :label_name, :song_name])
+  def add_track_params
+    {
+      artist_name: params[:artist_name],
+      album_name: params[:album_name],
+      song_name: params[:song_name],
+      label_name: params[:label_name]
+    }
   end
 
   def playlist_params

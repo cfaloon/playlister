@@ -12,19 +12,4 @@ class Playlist < ApplicationRecord
 
   # status enum
   enum status: [:in_progress, :ended]
-
-  # instance methods
-  def add_song(add_song_params)
-    label = Label.find_or_create_by(name: add_song_params[:label_name].strip)
-    artist = Artist.find_or_create_by(name: add_song_params[:artist_name].strip)
-    album = Album.find_or_create_by(name: add_song_params[:album_name].strip,
-                                    label_id: label.id)
-    album.artists << artist unless album.artists.include? artist
-    album.save
-    song = Song.find_or_initialize_by(name: add_song_params[:song_name].strip,
-                                      album: album,
-                                      artist: artist)
-    song.playlists << self
-    song.save
-  end
 end

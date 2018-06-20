@@ -25,6 +25,19 @@ class AddTrackServiceTest < ActiveSupport::TestCase
     end
   end
 
+  test 'it creates song, artist, album and label with all associations' do
+    @subject.append(song_name: 'Ripest of Apples',
+                    artist_name: 'Anna & Elizabeth',
+                    album_name: 'The Invisible Comes To Us',
+                    label_name: 'Smithsonian Folkways')
+
+    assert_equal @playlist.songs.count, 1
+    assert_equal @playlist.songs.first.album.name, 'The Invisible Comes To Us'
+    assert_equal @playlist.songs.first.album.artists.first.name, 'Anna & Elizabeth'
+    assert_equal @playlist.songs.first.album.label.name, 'Smithsonian Folkways'
+
+  end
+
   # idempotent artist/album/label/song creation
   test 'it adds a track to playlist without duplicating existing artist' do
     artist = create(:artist, name: 'Miles Davis')
@@ -62,16 +75,16 @@ class AddTrackServiceTest < ActiveSupport::TestCase
     second_user = create(:user, email: 'other_user@email.com', username: 'dos')
     old_playlist = create(:playlist, played_at: 5.months.ago, user: second_user)
     other_service = AddTrackService.new(old_playlist)
-    add_song_attrs = { song_name: 'Virginia Rambler',
+    add_track_attrs = { song_name: 'Virginia Rambler',
                        artist_name: 'Anna & Elizabeth',
                        album_name: 'The Invisible Comes To Us',
                        label_name: 'Smithsonian Folkways'
                       }
 
-    other_service.append(add_song_attrs)
+    other_service.append(add_track_attrs)
 
     assert_no_difference 'Song.count' do
-      @subject.append(add_song_attrs)
+      @subject.append(add_track_attrs)
     end
   end
 

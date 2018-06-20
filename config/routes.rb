@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :playlists do
     member do
       patch 'end'
-      post 'add_song'
+      post 'add_track'
     end
   end
 
