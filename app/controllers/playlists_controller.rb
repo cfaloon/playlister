@@ -50,6 +50,7 @@ class PlaylistsController < ApplicationController
   end
 
   def end
+    authorize! :update, @playlist
     @playlist.ended!
     redirect_to playlists_path
   end

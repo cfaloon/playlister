@@ -6,8 +6,8 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user1 = create(:user)
     @user2 = create(:user, username: 'other_user', email: 'other_user@domain.com')
-    @user1.playlists.create(attributes_for(:playlist, user: nil))
-    @user2.playlists.create(attributes_for(:playlist, user: nil))
+    @playlist1 = create(:playlist, user: @user1)
+    @playlist2 = create(:playlist, user: @user2)
   end
 
   test "should get new" do
@@ -17,7 +17,7 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get edit if playlist belongs to user' do
+  test "should get edit if playlist belongs to user" do
     @user1.playlists.create(attributes_for(:playlist, user: nil))
     sign_in @user1
 
@@ -79,5 +79,19 @@ class PlaylistsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :redirect
+  end
+
+  test "user can end one's own playlist" do
+    sign_in @user1
+    patch end_playlist_path(@playlist1)
+
+    assert_response :redirect
+  end
+
+  test "user cannot end other's playlist" do
+    sign_in @user1
+    patch end_playlist_path(@playlist2)
+
+    assert_response :forbidden
   end
 end

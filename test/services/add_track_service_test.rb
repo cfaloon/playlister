@@ -7,7 +7,6 @@ class AddTrackServiceTest < ActiveSupport::TestCase
   end
 
   test 'it adds a track with song, artist, album and label names' do
-
     assert_difference '@playlist.songs.count', 1 do
       @subject.append(song_name: 'foo',
                       artist_name: 'bar',
