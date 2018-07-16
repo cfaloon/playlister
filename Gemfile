@@ -20,6 +20,7 @@ gem 'turbolinks', '~> 5'
 
 gem 'acts_as_list'
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'cancancan', '~> 2.0'
 gem 'devise'
 gem 'faker'
 gem 'font-awesome-rails'
