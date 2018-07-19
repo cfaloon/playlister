@@ -23,6 +23,7 @@ class ArtistsControllerTest < ActionDispatch::IntegrationTest
   # show action
   test "should get artist show" do
     get artist_path(create(:artist))
+
     assert_response :success
   end
 end
