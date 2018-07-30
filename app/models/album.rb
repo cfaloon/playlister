@@ -2,6 +2,8 @@ class Album < ApplicationRecord
   include PgSearch
   # relations
   has_many :songs
+  has_many :playlist_songs, through: :songs
+  has_many :playlists, through: :playlist_songs
   has_many :album_artists
   has_many :artists, through: :album_artists
   belongs_to :label, optional: true

@@ -20,4 +20,12 @@ class AlbumTest < ActiveSupport::TestCase
     album = create(:album, name: 'Charnel Ground', artists: [create(:artist, name: 'Charnel Ground')])
     assert_includes Album.search_by_name('Charnel'), album
   end
+
+  test '#playlists' do
+    playlist = create(:playlist)
+    AddTrackService.new(playlist).append(song_name: 'Playa La Ticla', album_name: 'Charnel Ground', artist_name: 'Charnel Ground', label_name: '12XU')
+    album = Album.find_by(name: 'Charnel Ground')
+
+    assert album.playlists.include?(playlist)
+  end
 end
