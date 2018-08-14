@@ -1,33 +1,27 @@
-<% content_for :heading, @label.name %>
+<% content_for :heading do %>
+  <span class="resource-name"><%= @label.name %></span>
+<% end %>
+<% content_for :sub_heading, 'Label' %>
+
+<h1>Playlists featuring <span class="resource-name"><%= @label.name %></span></h1>
 
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-header">
-        <h4>Albums</h4>
-      </div>
-      <div class="card-body">
-        <ul>
-          <% @label.albums.each do |album| %>
-          <li>
-            <%= link_to album.name, album_path(album) %>
-          </li>
-          <% end %>
-        </ul>
-      </div>
+  <div class="col-12 col-md-9">
+    <div class="card-columns">
+      <%= render @label.playlists.order('playlists.created_at').includes(:user).uniq %>
     </div>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-12 col-md-3">
     <div class="card">
       <div class="card-header">
-        <h4><%= @label.name %> Artists</h4>
+        <h4 class="card-title">Albums on <span class="resource-name"><%= @label.name %></span></h4>
       </div>
       <div class="card-body">
-        <ul>
-          <% @label.artists.uniq.each do |artist| %>
+        <ul class="list-unstyled">
+          <% @label.albums.each do |album| %>
           <li>
-            <%= link_to artist.name, artist_path(artist) %>
+            <%= link_to album.name, album %>
           </li>
           <% end %>
         </ul>
