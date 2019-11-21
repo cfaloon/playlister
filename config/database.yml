@@ -3,8 +3,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   encoding: unicode
-  host: db
-  username: postgres
+  host: <%= ENV.fetch("DB_HOST") { nil } %>
+  username: <%= ENV.fetch("DB_USER") { nil } %>
   password:
 
 development:
