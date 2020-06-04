@@ -8,4 +8,8 @@ class Label < ApplicationRecord
   # scopes
   pg_search_scope :search_by_name, against: :name, using: { tsearch:
                                                             { prefix: true } }
+
+  def playlists
+    Playlist.where(id: albums.joins(:playlists).pluck('playlists.id'))
+  end
 end
